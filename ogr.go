@@ -455,6 +455,18 @@ func (geom Geometry) ToWKB() ([]uint8, error) {
 	return b, err
 }
 
+// Convert a geometry to well known binary ISO
+// Convert a geometry into SFSQL 1.2 / ISO SQL/MM Part 3 well known binary format.
+// It exports the SFSQL 1.2 and ISO SQL/MM Part 3 extended dimension (Z&M) WKB types.
+// https://gdal.org/en/stable/api/vector_c_api.html#_CPPv420OGR_G_ExportToIsoWkb12OGRGeometryH15OGRwkbByteOrderPh
+func (geom Geometry) ToIsoWKB() ([]uint8, error) {
+	b := make([]uint8, geom.WKBSize())
+	cString := (*C.uchar)(unsafe.Pointer(&b[0]))
+	cErr := C.go_ExportToIsoWkb(geom.cval, C.OGRwkbByteOrder(C.wkbNDR), cString)
+	err := OGRErrContainer{ErrVal: cErr}.Err()
+	return b, err
+}
+
 // Returns size of related binary representation
 func (geom Geometry) WKBSize() int {
 	size := C.OGR_G_WkbSize(geom.cval)

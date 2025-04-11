@@ -15,4 +15,7 @@ OGRErr go_ImportFromWkb(OGRGeometryH hGeom, void* pabyData, int nSize);
 // go_ExportToWkb helps us in handling an API/ABI break introduced by gdal 2.3.0.
 OGRErr go_ExportToWkb(OGRGeometryH hGeom, OGRwkbByteOrder eOrder, unsigned char* pabyDstBuffer);
 
+// go_ExportToIsoWkb helps us in handling an API/ABI break introduced by gdal 2.3.0.
+OGRErr go_ExportToIsoWkb(OGRGeometryH hGeom, OGRwkbByteOrder eOrder, unsigned char* pabyDstBuffer);
+
 #endif  // GO_OGR_WKB_H_

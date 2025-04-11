@@ -19,6 +19,10 @@ OGRErr go_ExportToWkb(OGRGeometryH hGeom, OGRwkbByteOrder eOrder, unsigned char*
     return OGR_G_ExportToWkb(hGeom, eOrder, pabyDstBuffer);
 }
 
+OGRErr go_ExportToIsoWkb(OGRGeometryH hGeom, OGRwkbByteOrder eOrder, unsigned char* pabyDstBuffer) {
+    return OGR_G_ExportToIsoWkb(hGeom, eOrder, pabyDstBuffer);
+}
+
 #elif GDAL_COMPUTE_VERSION(GDAL_VERSION_MAJOR, GDAL_VERSION_MINOR, GDAL_VERSION_PATCH) < GDAL_COMPUTE_VERSION(2, 3, 0)
 
 OGRErr go_CreateFromWkb(void* pabyData, OGRSpatialReferenceH hSRS, OGRGeometryH* phGeometry, int nBytes) {
@@ -31,6 +35,10 @@ OGRErr go_ImportFromWkb(OGRGeometryH hGeom, void* pabyData, int nSize) {
 
 OGRErr go_ExportToWkb(OGRGeometryH hGeom, OGRwkbByteOrder eOrder, unsigned char* pabyDstBuffer) {
     return OGR_G_ExportToWkb(hGeom, eOrder, pabyDstBuffer);
+}
+
+OGRErr go_ExportToIsoWkb(OGRGeometryH hGeom, OGRwkbByteOrder eOrder, unsigned char* pabyDstBuffer) {
+    return OGR_G_ExportToIsoWkb(hGeom, eOrder, pabyDstBuffer);
 }
 
 #endif // GDAL_COMPUTE_VERSION(GDAL_VERSION_MAJOR, GDAL_VERSION_MINOR, GDAL_VERSION_PATCH) >= GDAL_COMPUTE_VERSION(2, 3, 0)
